@@ -59,7 +59,7 @@ class Unlock(commands.Cog):
         name="unlock",
         help="Unlocks a channel to allow sending messages.",
         usage="unlock <channel>",
-        aliases=["unlockchannel"])
+        aliases=["unlockchannel", "ul"])
     @commands.has_permissions(manage_roles=True)
     @commands.bot_has_permissions(manage_roles=True)
     async def unlock_command(self, ctx, channel: discord.TextChannel = None):

@@ -72,7 +72,7 @@ Threads : {len(guild.threads)}
             if not guild.chunked:
                 await guild.chunk()
 
-            embed = discord.Embed(description="<:queue:1555847970199572572> Prefix For This Server is `$`\n<:queue:1555847970199572572> Get Started with `$help`\n<:queue:1555847970199572572> For detailed guides, FAQ & information, visit our **[Support]**",
+            embed = discord.Embed(description="📜 Prefix For This Server is `$`\n📜 Get Started with `$help`\n📜 For detailed guides, FAQ & information, visit our **[Support]**",
     color=0xff0000)
             embed.set_author(name="Thanks for adding me!", icon_url=guild.me.display_avatar.url)
             embed.set_footer(text="Powered by admin", icon_url="https://cdn.discordapp.com/icons/699587669059174461/f689b4366447d5a23eda8d0ec749c1ba.png")

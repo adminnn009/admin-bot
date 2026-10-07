@@ -15,7 +15,7 @@ class Status(commands.Cog):
     @commands.cooldown(1, 3, commands.BucketType.user)
     async def status(self, ctx, user: discord.User = None):
         user = user or ctx.author
-        processing = await ctx.send("<:utility:1555848095127048282> Loading Status...")
+        processing = await ctx.send("🔄 Loading Status...")
         embed = discord.Embed(title=f"{user.display_name}'s Status", color=0x000000)
 
         status_emoji = {

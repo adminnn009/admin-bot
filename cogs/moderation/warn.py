@@ -83,7 +83,7 @@ class Warn(commands.Cog):
         name="warn",
         help="Warn a user in the server",
         usage="warn <user> [reason]",
-        aliases=["warnuser"])
+        aliases=["warnuser", "w"])
     @blacklist_check()
     @ignore_check()
     @commands.cooldown(1, 10, commands.BucketType.member)

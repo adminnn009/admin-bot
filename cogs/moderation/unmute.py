@@ -154,7 +154,7 @@ class Unmute(commands.Cog):
 
             
             try:
-                await user.send(f"<:star:1555848046682579084> You have been unmuted in **{ctx.guild.name}**.")
+                await user.send(f"⭐ You have been unmuted in **{ctx.guild.name}**.")
                 dm_status = "Yes"
             except discord.Forbidden:
                 dm_status = "No"

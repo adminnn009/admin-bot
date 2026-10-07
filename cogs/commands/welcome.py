@@ -183,7 +183,7 @@ class Welcomer(commands.Cog):
                 return
             if message_content:
                 await self._save_welcome_data(ctx.guild.id, "simple", message_content[0])
-                await interaction.response.send_message("<:star:1555848046682579084> Welcome message setup completed!")
+                await interaction.response.send_message("⭐ Welcome message setup completed!")
                 for item in setup_view.children:
                     item.disabled = True
                 await preview_message.edit(view=setup_view)
@@ -383,7 +383,7 @@ class Welcomer(commands.Cog):
                 return
 
             await self._save_welcome_data(ctx.guild.id, "embed", embed_data["message"] or "", embed_data)
-            await interaction.response.send_message("<:star:1555848046682579084> Embed welcome message setup completed!")
+            await interaction.response.send_message("⭐ Embed welcome message setup completed!")
 
             for item in setup_view.children:
                 item.disabled = True
@@ -515,7 +515,7 @@ class Welcomer(commands.Cog):
 
                 embed.description = f"Current Welcome Channel: {selected_channel.mention}"
                 await interaction.response.edit_message(embed=embed, view=None)
-                await ctx.send(f"<:star:1555848046682579084> Welcome channel has been set to {selected_channel.mention}")
+                await ctx.send(f"⭐ Welcome channel has been set to {selected_channel.mention}")
 
             select_menu.callback = select_callback
 
@@ -743,7 +743,7 @@ class Welcomer(commands.Cog):
             """, (auto_delete_duration, ctx.guild.id))
             await db.commit()
 
-        await ctx.send(f"<:star:1555848046682579084> Auto delete duration has been set to **{auto_delete_duration}** seconds.")
+        await ctx.send(f"⭐ Auto delete duration has been set to **{auto_delete_duration}** seconds.")
 
 
 

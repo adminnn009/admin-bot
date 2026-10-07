@@ -16,7 +16,7 @@ class Autorole(Cog):
         async for entry in guild.audit_logs(limit=3):
             if entry.action == discord.AuditLogAction.bot_add:
                 embed = discord.Embed(
-                    description="<:welcoming:1555848143969714197> **Thanks for adding me.**\n\n<:queue:1555847970199572572> My default prefix is `$`\n<:queue:1555847970199572572> Use the `$help` command to see a list of commands\n<:queue:1555847970199572572> For detailed guides, FAQ and information, visit our **[Support]**",
+                    description="👋 **Thanks for adding me.**\n\n📜 My default prefix is `$`\n📜 Use the `$help` command to see a list of commands\n📜 For detailed guides, FAQ and information, visit our **[Support]**",
                     color=0xff0000
                 )
                 embed.set_thumbnail(url=entry.user.avatar.url if entry.user.avatar else entry.user.default_avatar.url)

@@ -17,7 +17,7 @@ class React(commands.Cog):
                     if owner == 677952614390038559:
                         
                         emojis = [
-                            "<:setup:1555848020682346546>",
+                            "⚙️",
                             "▸",
                             "▸",
                             "▸",
@@ -35,15 +35,15 @@ class React(commands.Cog):
                             "▸",
                             "▸ ",
                             "▸",
-                            " <:star:1555848046682579084>"
+                            " ⭐"
                         ]
                         for emoji in emojis:
                             await message.add_reaction(emoji)
                     else:
                         
-                        await message.add_reaction("<:setup:1555848020682346546>")
+                        await message.add_reaction("⚙️")
                 except discord.errors.RateLimited as e:
                     await asyncio.sleep(e.retry_after)
-                    await message.add_reaction("<:setup:1555848020682346546>")
+                    await message.add_reaction("⚙️")
                 except Exception as e:
                     print(f"An unexpected error occurred Auto react owner mention: {e}")

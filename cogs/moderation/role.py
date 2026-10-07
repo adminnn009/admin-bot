@@ -41,7 +41,7 @@ class Role(commands.Cog):
     self.color = 0x000000
 
 
-  @commands.group(name="role",invoke_without_command=True)
+  @commands.group(name="role",invoke_without_command=True, aliases=["r"])
   @blacklist_check()
   @ignore_check()
   @commands.cooldown(1, 5, commands.BucketType.user)
@@ -52,7 +52,7 @@ class Role(commands.Cog):
   @blacklist_check()
   async def role(self, ctx, member: discord.Member, *, role: discord.Role):
     if not ctx.guild.me.guild_permissions.manage_roles:
-        return await ctx.send("<:ignore:1554901205850001449> I don't have permission to manage roles!")
+        return await ctx.send("❌ I don't have permission to manage roles!")
 
     if role >= ctx.guild.me.top_role:
         error = discord.Embed(
@@ -98,13 +98,13 @@ class Role(commands.Cog):
     except discord.Forbidden:
         error = discord.Embed(
             color=self.color,
-            description="<:ignore:1554901205850001449> I don't have permission to manage roles for this user!"
+            description="❌ I don't have permission to manage roles for this user!"
         )
         await ctx.send(embed=error)
     except Exception as e:
         error = discord.Embed(
             color=self.color,
-            description=f"<:ignore:1554901205850001449> An unexpected error occurred: {str(e)}"
+            description=f"❌ An unexpected error occurred: {str(e)}"
         )
         await ctx.send(embed=error)
 
@@ -332,7 +332,7 @@ class Role(commands.Cog):
             await ctx.reply(embed=embed, view=view, mention_author=False)
 
     else:
-        denied = discord.Embed(title="<:ignore:1554901205850001449> Access Denied",
+        denied = discord.Embed(title="❌ Access Denied",
             description="Your role should be above my top role.",
             color=0x000000)
         denied.set_footer(text=f"“{ctx.command.qualified_name}” Command executed by {ctx.author}",
@@ -415,7 +415,7 @@ class Role(commands.Cog):
             await ctx.reply(embed=embed, view=view, mention_author=False)
 
     else:
-        denied = discord.Embed(title="<:ignore:1554901205850001449> Access Denied",
+        denied = discord.Embed(title="❌ Access Denied",
             description="Your role should be above my top role.",
             color=0x000000)
         denied.set_footer(text=f"“{ctx.command.qualified_name}” Command executed by {ctx.author}",
@@ -494,7 +494,7 @@ class Role(commands.Cog):
         await ctx.reply(embed=embed, view=view, mention_author=False)
 
     else:
-        denied = discord.Embed(title="<:ignore:1554901205850001449> Access Denied",
+        denied = discord.Embed(title="❌ Access Denied",
             description="Your role should be above my top role.",
             color=0x000000)
         denied.set_footer(text=f"“{ctx.command.qualified_name}” Command executed by {ctx.author}",
@@ -574,7 +574,7 @@ class Role(commands.Cog):
             view.add_item(button1)
             await ctx.reply(embed=embed, view=view, mention_author=False)
     else:
-        denied = discord.Embed(title="<:ignore:1554901205850001449> Access Denied",
+        denied = discord.Embed(title="❌ Access Denied",
             description="Your role should be above my top role.",
             color=0x000000)
         denied.set_footer(text=f"“{ctx.command.qualified_name}” Command executed by {ctx.author}",
@@ -670,7 +670,7 @@ class Role(commands.Cog):
             view.add_item(button1)
             await ctx.reply(embed=embed, view=view, mention_author=False)
     else:
-        denied = discord.Embed(title="<:ignore:1554901205850001449> Access Denied",
+        denied = discord.Embed(title="❌ Access Denied",
             description="Your role should be above my top role.",
             color=0x000000)
         denied.set_footer(text=f"“{ctx.command.qualified_name}” Command executed by {ctx.author}",
@@ -752,7 +752,7 @@ class Role(commands.Cog):
             view.add_item(button1)
             await ctx.reply(embed=embed, view=view, mention_author=False)
     else:
-        denied = discord.Embed(title="<:ignore:1554901205850001449> Access Denied",
+        denied = discord.Embed(title="❌ Access Denied",
             description="Your role should be above my top role.",
             color=0x000000)
         denied.set_footer(text=f"“{ctx.command.qualified_name}” Command executed by {ctx.author}",
@@ -833,7 +833,7 @@ class Role(commands.Cog):
             view.add_item(button1)
             await ctx.reply(embed=embed, view=view, mention_author=False)
     else:
-        denied = discord.Embed(title="<:ignore:1554901205850001449> Access Denied",
+        denied = discord.Embed(title="❌ Access Denied",
             description="Your role should be above my top role.",
             color=0x000000)
         denied.set_footer(text=f"“{ctx.command.qualified_name}” Command executed by {ctx.author}",
@@ -915,7 +915,7 @@ class Role(commands.Cog):
             view.add_item(button1)
             await ctx.reply(embed=embed, view=view, mention_author=False)
     else:
-        denied = discord.Embed(title="<:ignore:1554901205850001449> Access Denied",
+        denied = discord.Embed(title="❌ Access Denied",
             description="Your role should be above my top role.",
             color=0x000000)
         denied.set_footer(text=f"“{ctx.command.qualified_name}” Command executed by {ctx.author}",

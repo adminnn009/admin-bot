@@ -54,7 +54,7 @@ class Unwhitelist(commands.Cog):
                 description=(
                     f"**{ctx.guild.name} Security Settings ✦\n"
                     "Ohh NO! looks like your server doesn't enabled security\n\n"
-                    "Current Status : <:ignore:1554901205850001449>\n\n"
+                    "Current Status : ❌\n\n"
                     "To enable use `antinuke enable` **"
                 )
             )

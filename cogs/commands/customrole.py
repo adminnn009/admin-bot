@@ -538,12 +538,12 @@ class Customrole(commands.Cog):
 
             
             if reqrole is None:
-                await message.channel.send("<:warn:1555848119160279080> The required role is not set up in this server. Please set it up using `setup reqrole`.")
+                await message.channel.send("⚠️ The required role is not set up in this server. Please set it up using `setup reqrole`.")
                 return
 
             
             if reqrole not in message.author.roles:
-                await message.channel.send(embed=discord.Embed(description=f"<:warn:1555848119160279080> You need the {reqrole.mention} role to use this command.", color=0x000000))
+                await message.channel.send(embed=discord.Embed(description=f"⚠️ You need the {reqrole.mention} role to use this command.", color=0x000000))
                 return
 
             

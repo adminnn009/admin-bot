@@ -79,7 +79,7 @@ class Antinuke(commands.Cog):
     elif option.lower() == 'enable':
       if is_activated:
         embed = discord.Embed(
-          description=f'**Security Settings For {ctx.guild.name}**\nYour server __**already has Antinuke enabled.**__\n\nCurrent Status: <:star:1555848046682579084> Enabled\nTo Disable use `antinuke disable`',
+          description=f'**Security Settings For {ctx.guild.name}**\nYour server __**already has Antinuke enabled.**__\n\nCurrent Status: ⭐ Enabled\nTo Disable use `antinuke disable`',
           color=0x000000
         )
         embed.set_thumbnail(url=self.bot.user.avatar.url)
@@ -88,7 +88,7 @@ class Antinuke(commands.Cog):
         
         setup_embed = discord.Embed(
           title="Antinuke Setup ▸",
-          description="<:star:1555848046682579084> | Initializing Quick Setup!",
+          description="⭐ | Initializing Quick Setup!",
           color=0x000000
         )
         setup_message = await ctx.send(embed=setup_embed)
@@ -100,11 +100,11 @@ class Antinuke(commands.Cog):
           return
 
         await asyncio.sleep(1)
-        setup_embed.description += "\n<:star:1555848046682579084> | Checking admin's role position for optimal configuration..."
+        setup_embed.description += "\n⭐ | Checking admin's role position for optimal configuration..."
         await setup_message.edit(embed=setup_embed)
 
         await asyncio.sleep(1)
-        setup_embed.description += "\n<:star:1555848046682579084> | Crafting and configuring the admin Supreme role..."
+        setup_embed.description += "\n⭐ | Crafting and configuring the admin Supreme role..."
         await setup_message.edit(embed=setup_embed)
         
         try:
@@ -127,7 +127,7 @@ class Antinuke(commands.Cog):
           return
 
         await asyncio.sleep(1)
-        setup_embed.description += "\n<:star:1555848046682579084> | Ensuring precise placement of the admin Supreme role..."
+        setup_embed.description += "\n⭐ | Ensuring precise placement of the admin Supreme role..."
         await setup_message.edit(embed=setup_embed)
         try:
           await ctx.guild.edit_role_positions(positions={role: 1})
@@ -141,11 +141,11 @@ class Antinuke(commands.Cog):
           return
 
         await asyncio.sleep(1)
-        setup_embed.description += "\n<:star:1555848046682579084> | Safeguarding your changes..."
+        setup_embed.description += "\n⭐ | Safeguarding your changes..."
         await setup_message.edit(embed=setup_embed)
 
         await asyncio.sleep(1)
-        setup_embed.description += "\n<:star:1555848046682579084> | Activating the Antinuke Modules for enhanced security...!!"
+        setup_embed.description += "\n⭐ | Activating the Antinuke Modules for enhanced security...!!"
         await setup_message.edit(embed=setup_embed)
 
         await self.db.execute('INSERT OR REPLACE INTO antinuke (guild_id, status) VALUES (?, ?)', (guild_id, True))
@@ -155,11 +155,11 @@ class Antinuke(commands.Cog):
         await setup_message.delete()
 
         embed = discord.Embed(
-          description=f"**Security Settings For {ctx.guild.name} ✦**\n\nTip: For optimal functionality of the AntiNuke Module, please ensure that my role has **Administration** permissions and is positioned at the **Top** of the roles list\n\n✦ __**Modules Enabled**__\n>>> <:star:1555848046682579084> **Anti Ban**\n<:star:1555848046682579084> **Anti Kick**\n<:star:1555848046682579084> **Anti Bot**\n<:star:1555848046682579084> **Anti Channel Create**\n<:star:1555848046682579084> **Anti Channel Delete**\n<:star:1555848046682579084> **Anti Channel Update**\n<:star:1555848046682579084> **Anti Everyone/Here**\n<:star:1555848046682579084> **Anti Role Create**\n<:star:1555848046682579084> **Anti Role Delete**\n<:star:1555848046682579084> **Anti Role Update**\n<:star:1555848046682579084> **Anti Member Update**\n<:star:1555848046682579084> **Anti Guild Update**\n<:star:1555848046682579084> **Anti Integration**\n<:star:1555848046682579084> **Anti Webhook Create**\n<:star:1555848046682579084> **Anti Webhook Delete**\n<:star:1555848046682579084> **Anti Webhook Update**",
+          description=f"**Security Settings For {ctx.guild.name} ✦**\n\nTip: For optimal functionality of the AntiNuke Module, please ensure that my role has **Administration** permissions and is positioned at the **Top** of the roles list\n\n✦ __**Modules Enabled**__\n>>> ⭐ **Anti Ban**\n⭐ **Anti Kick**\n⭐ **Anti Bot**\n⭐ **Anti Channel Create**\n⭐ **Anti Channel Delete**\n⭐ **Anti Channel Update**\n⭐ **Anti Everyone/Here**\n⭐ **Anti Role Create**\n⭐ **Anti Role Delete**\n⭐ **Anti Role Update**\n⭐ **Anti Member Update**\n⭐ **Anti Guild Update**\n⭐ **Anti Integration**\n⭐ **Anti Webhook Create**\n⭐ **Anti Webhook Delete**\n⭐ **Anti Webhook Update**",
           color=0x000000
         )
 
-        embed.add_field(name='', value="<:star:1555848046682579084> **Anti Prune**\n<:star:1555848046682579084> **Auto Recovery**")
+        embed.add_field(name='', value="⭐ **Anti Prune**\n⭐ **Auto Recovery**")
 
         embed.set_author(name="admin Antinuke", icon_url=self.bot.user.avatar.url)
 
@@ -174,7 +174,7 @@ class Antinuke(commands.Cog):
     elif option.lower() == 'disable':
       if not is_activated:
         embed = discord.Embed(
-          description=f'**Security Settings For {ctx.guild.name}**\nUhh, looks like your server hasn\'t enabled Antinuke.\n\nCurrent Status: <:ignore:1554901205850001449> Disabled\n\nTo Enable use `antinuke enable`',
+          description=f'**Security Settings For {ctx.guild.name}**\nUhh, looks like your server hasn\'t enabled Antinuke.\n\nCurrent Status: ❌ Disabled\n\nTo Enable use `antinuke enable`',
           color=0x000000
         )
         embed.set_thumbnail(url=self.bot.user.avatar.url)
@@ -182,7 +182,7 @@ class Antinuke(commands.Cog):
         await self.db.execute('DELETE FROM antinuke WHERE guild_id = ?', (guild_id,))
         await self.db.commit()
         embed = discord.Embed(
-          description=f'**Security Settings For {ctx.guild.name}**\nSuccessfully disabled Antinuke for this server.\n\nCurrent Status: <:ignore:1554901205850001449> Disabled\n\nTo Enable use `antinuke enable`',
+          description=f'**Security Settings For {ctx.guild.name}**\nSuccessfully disabled Antinuke for this server.\n\nCurrent Status: ❌ Disabled\n\nTo Enable use `antinuke enable`',
           color=0x000000
         )
         embed.set_thumbnail(url=self.bot.user.avatar.url)

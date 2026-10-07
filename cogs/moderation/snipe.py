@@ -106,7 +106,7 @@ class Snipe(commands.Cog):
             'attachments': attachments
         })
 
-    @commands.hybrid_command(name='snipe', help="Shows the recently deleted messages in the channel.")
+    @commands.hybrid_command(name='snipe', help="Shows the recently deleted messages in the channel.", aliases=["s"])
     @blacklist_check()
     @ignore_check()
     @commands.cooldown(1, 3, commands.BucketType.user)

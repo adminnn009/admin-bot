@@ -122,7 +122,7 @@ class Mute(commands.Cog):
         name="mute",
         help="Mutes a user with optional time and reason",
         usage="mute <member> [time] [reason]",
-        aliases=["timeout", "stfu"])
+        aliases=["timeout", "stfu", "to"])
     @blacklist_check()
     @ignore_check()
     @commands.cooldown(1, 10, commands.BucketType.member)
@@ -199,12 +199,12 @@ class Mute(commands.Cog):
     async def mute_error(self, ctx, error):
         
         if isinstance(error, commands.BotMissingPermissions):
-            embed = discord.Embed(title="<:ignore:1554901205850001449> Access Denied", description="I don't have permission to mute members.", color=self.color)
+            embed = discord.Embed(title="❌ Access Denied", description="I don't have permission to mute members.", color=self.color)
             await ctx.send(embed=embed)
         elif isinstance(error, discord.Forbidden):
-            embed = discord.Embed(title="<:ignore:1554901205850001449> Missing Permissions", description="I can't mute this user as they might have higher privileges (e.g., Admin).", color=self.color)
+            embed = discord.Embed(title="❌ Missing Permissions", description="I can't mute this user as they might have higher privileges (e.g., Admin).", color=self.color)
             await ctx.send(embed=embed)
             
         else:
-            embed = discord.Embed(title="<:ignore:1554901205850001449> Unexpected Error", description=str(error), color=self.color)
+            embed = discord.Embed(title="❌ Unexpected Error", description=str(error), color=self.color)
             await ctx.send(embed=embed)

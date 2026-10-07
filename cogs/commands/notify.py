@@ -33,7 +33,7 @@ class NotifCommands(commands.Cog):
             async with db.execute('SELECT * FROM notifications WHERE type = ?', ('twitch',)) as existing:
                 row = await existing.fetchone()
                 if row:
-                    await ctx.reply(embed=discord.Embed(title="<:ignore:1554901205850001449> Access Denied", description="Twitch notification already set. Remove it first.", color=0x000000))
+                    await ctx.reply(embed=discord.Embed(title="❌ Access Denied", description="Twitch notification already set. Remove it first.", color=0x000000))
                     return
 
             await db.execute('INSERT INTO notifications (type, role_id, channel_id) VALUES (?, ?, ?)', ('twitch', role.id, channel.id))
@@ -49,7 +49,7 @@ class NotifCommands(commands.Cog):
             async with db.execute('SELECT * FROM notifications WHERE type = ?', ('youtube',)) as existing:
                 row = await existing.fetchone()
                 if row:
-                    await ctx.reply(embed=discord.Embed(title="<:ignore:1554901205850001449> Access Denied", description="YouTube notification already set. Remove it first.", color=0x000000))
+                    await ctx.reply(embed=discord.Embed(title="❌ Access Denied", description="YouTube notification already set. Remove it first.", color=0x000000))
                     return
 
             await db.execute('INSERT INTO notifications (type, role_id, channel_id) VALUES (?, ?, ?)', ('youtube', role.id, channel.id))

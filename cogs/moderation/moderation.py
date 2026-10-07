@@ -188,7 +188,7 @@ class Moderation(commands.Cog):
 
 
       else:
-          embed5 = discord.Embed(title="<:ignore:1554901205850001449> Access Denied",
+          embed5 = discord.Embed(title="❌ Access Denied",
                 description="Your role should be above my top role.",
                 color=0x000000)
           embed5.set_footer(text=f"“{ctx.command.qualified_name}” Command executed by {ctx.author}",
@@ -239,7 +239,7 @@ class Moderation(commands.Cog):
                   else:
                     await interaction.response.edit_message(
                          content=
-                           "<:ignore:1554901205850001449> | It seems I'm missing the necessary permissions. Please grant me the `manage roles` permissions and try again.",
+                           "❌ | It seems I'm missing the necessary permissions. Please grant me the `manage roles` permissions and try again.",
                               embed=None,
                                   view=None)
               else:
@@ -272,7 +272,7 @@ class Moderation(commands.Cog):
           await ctx.reply(embed=embed, view=view, mention_author=False,delete_after=30)     
 
       else:
-          denied = discord.Embed(title="<:ignore:1554901205850001449> Access Denied",
+          denied = discord.Embed(title="❌ Access Denied",
               description="Your role should be above my top role.",
               color=0x000000)
           denied.set_footer(text=f"“{ctx.command.qualified_name}” Command executed by {ctx.author}",
@@ -292,7 +292,7 @@ class Moderation(commands.Cog):
   @commands.bot_has_permissions(manage_roles= True)
   async def give(self, ctx, member: discord.Member, *, role: discord.Role):
     if not ctx.guild.me.guild_permissions.manage_roles:
-        return await ctx.send("<:ignore:1554901205850001449> I don't have permission to manage roles!")
+        return await ctx.send("❌ I don't have permission to manage roles!")
 
     if role >= ctx.guild.me.top_role:
         error = discord.Embed(
@@ -338,13 +338,13 @@ class Moderation(commands.Cog):
     except discord.Forbidden:
         error = discord.Embed(
             color=self.color,
-            description="<:ignore:1554901205850001449> I don't have permission to manage roles for this user!"
+            description="❌ I don't have permission to manage roles for this user!"
         )
         await ctx.send(embed=error)
     except Exception as e:
         error = discord.Embed(
             color=self.color,
-            description=f"<:ignore:1554901205850001449> An unexpected error occurred: {str(e)}"
+            description=f"❌ An unexpected error occurred: {str(e)}"
         )
         await ctx.send(embed=error)
 
@@ -388,7 +388,7 @@ class Moderation(commands.Cog):
                   else:
                     await interaction.response.edit_message(
                          content=
-                           "<:ignore:1554901205850001449> | It seems I'm missing the necessary permissions. Please grant me the `manage channels` permissions and try again.",
+                           "❌ | It seems I'm missing the necessary permissions. Please grant me the `manage channels` permissions and try again.",
                               embed=None,
                                   view=None)
               else:
@@ -421,7 +421,7 @@ class Moderation(commands.Cog):
           await ctx.reply(embed=embed, view=view, mention_author=False,delete_after=30)
 
       else:
-          denied = discord.Embed(title="<:ignore:1554901205850001449> Access Denied",
+          denied = discord.Embed(title="❌ Access Denied",
               description="Your role should be above my top role.",
               color=0x000000)
           denied.set_footer(text=f"“{ctx.command.qualified_name}” Command executed by {ctx.author}",
@@ -466,7 +466,7 @@ class Moderation(commands.Cog):
                   else:
                     await interaction.response.edit_message(
                          content=
-                           "<:ignore:1554901205850001449> | It seems I'm missing the necessary permissions. Please grant me the `manage channels` permissions and try again.",
+                           "❌ | It seems I'm missing the necessary permissions. Please grant me the `manage channels` permissions and try again.",
                               embed=None,
                                   view=None)
               else:
@@ -499,7 +499,7 @@ class Moderation(commands.Cog):
           await ctx.reply(embed=embed, view=view, mention_author=False,delete_after=30)     
 
       else:
-          denied = discord.Embed(title="<:ignore:1554901205850001449> Access Denied",
+          denied = discord.Embed(title="❌ Access Denied",
               description="Your role should be above my top role.",
               color=0x000000)
           denied.set_footer(text=f"“{ctx.command.qualified_name}” Command executed by {ctx.author}",
@@ -537,7 +537,7 @@ class Moderation(commands.Cog):
                              )
           await ctx.reply(embed=embed1)
       else:
-          denied = discord.Embed(title="<:ignore:1554901205850001449> Access Denied",
+          denied = discord.Embed(title="❌ Access Denied",
               description="Your role should be above my top role.",
               color=0x000000)
           denied.set_footer(text=f"“{ctx.command.qualified_name}” Command executed by {ctx.author}",
@@ -591,7 +591,7 @@ class Moderation(commands.Cog):
         
 
   @commands.hybrid_command(name="nick",
-                           aliases=['setnick'],
+                           aliases=["setnick", "n"],
                            help="To change someone's nickname.",
                            usage="nick [member]")
   @blacklist_check()
@@ -655,13 +655,13 @@ class Moderation(commands.Cog):
     except discord.Forbidden:
         error = discord.Embed(
             color=self.color,
-            description="<:ignore:1554901205850001449> | I don't have permission to manage this user's nickname!"
+            description="❌ | I don't have permission to manage this user's nickname!"
         )
         await ctx.send(embed=error)
     except Exception as e:
         error = discord.Embed(
             color=self.color,
-            description=f"<:ignore:1554901205850001449> | An error occurred while trying to change the nickname: {str(e)}"
+            description=f"❌ | An error occurred while trying to change the nickname: {str(e)}"
         )
         await ctx.send(embed=error)
         
@@ -698,7 +698,7 @@ class Moderation(commands.Cog):
         else:
           await interaction.response.edit_message(
             content=
-            "<:ignore:1554901205850001449> | It seems I'm missing the necessary permissions. Please grant me the `manage channel` permissions and try again.",
+            "❌ | It seems I'm missing the necessary permissions. Please grant me the `manage channel` permissions and try again.",
             embed=None,
             view=None)
       else:
@@ -733,7 +733,7 @@ class Moderation(commands.Cog):
   @commands.hybrid_command(name="slowmode",
                            help="Changes the slowmode",
                            usage="slowmode [seconds]",
-                           aliases=["slow"])
+                           aliases=["slow", "sl"])
   @blacklist_check()
   @ignore_check()
   @commands.cooldown(1, 2, commands.BucketType.user)
@@ -796,7 +796,7 @@ class Moderation(commands.Cog):
             for i in msg.stickers:
                 name = i.name
                 await ctx.guild.delete_sticker(i)
-            await ctx.reply(f"<:star:1555848046682579084> Sucessfully deleted sticker named `{name}`")
+            await ctx.reply(f"⭐ Sucessfully deleted sticker named `{name}`")
         except:
             await ctx.reply("Failed to delete the sticker")
 

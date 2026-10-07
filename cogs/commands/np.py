@@ -90,7 +90,7 @@ class TimeSelect(Select):
         if log_channel:
             embed = discord.Embed(
                 title="User Added to No Prefix",
-                description=f"**✦ User**: [{self.user}](https://discord.com/users/{self.user.id})\n**✦ User Mention**: {self.user.mention}\n**✦ ID**: {self.user.id}\n\n**✦ Added By**: [{self.author.display_name}](https://discord.com/users/{self.author.id})\n✦ **Expiry Time**: {expiry_text}\n✦ **Timestamp**: {expiry_timestamp}\n\n<:star:1555848046682579084> **Tier**: **{self.values[0].upper()}**",
+                description=f"**✦ User**: [{self.user}](https://discord.com/users/{self.user.id})\n**✦ User Mention**: {self.user.mention}\n**✦ ID**: {self.user.id}\n\n**✦ Added By**: [{self.author.display_name}](https://discord.com/users/{self.author.id})\n✦ **Expiry Time**: {expiry_text}\n✦ **Timestamp**: {expiry_timestamp}\n\n⭐ **Tier**: **{self.values[0].upper()}**",
                 color=0x000000
             )
             embed.set_thumbnail(url=self.user.avatar.url if self.user.avatar else self.user.default_avatar.url)
@@ -204,7 +204,7 @@ class NoPrefix(commands.Cog):
                         
                                     
                         embed = discord.Embed(
-                            description=f"<:warn:1555848119160279080> Your No Prefix status has **Expired**. You will now require the prefix to use commands.",
+                            description=f"⚠️ Your No Prefix status has **Expired**. You will now require the prefix to use commands.",
                             color=0x000000
                         )
                         embed.set_author(name="No Prefix Expired", icon_url=user.avatar.url if user.avatar else user.default_avatar.url)
@@ -508,7 +508,7 @@ class NoPrefix(commands.Cog):
             await db.execute("DELETE FROM np WHERE id = ?", (user.id,))
             await db.commit()
             
-        embed= discord.Embed(title="<:warn:1555848119160279080> Global No Prefix Expired",
+        embed= discord.Embed(title="⚠️ Global No Prefix Expired",
                         description=f"Hey {user.mention}, your global no prefix has expired!\n\n__**Reason:**__ Unboosting our partnered Server.\nIf you think this is a mistake then please reach out [Support].",
                         color=0x000000)
             

@@ -47,6 +47,7 @@ from .commands.status import Status
 from .commands.np import NoPrefix
 from .commands.filters import FilterCog
 from .commands.owner2 import Global
+from .commands.roles import Roles
 #from .commands.activity import Activity
 #____________ Events _____________
 
@@ -65,15 +66,15 @@ from .events.autoreact import AutoReactListener
 from .olympus.antinuke import _antinuke
 from .olympus.extra import _extra
 from .olympus.general import _general
-from .olympus.automod import _automod 
+from .olympus.automod import _automod
 from .olympus.moderation import _moderation
 from .olympus.music import _music
 from .olympus.fun import _fun
 from .olympus.games import _games
 from .olympus.ignore import _ignore
 from .olympus.server import _server
-from .olympus.voice import _voice 
-from .olympus.welcome import _welcome 
+from .olympus.voice import _voice
+from .olympus.welcome import _welcome
 from .olympus.giveaway import _giveaway
 
 
@@ -97,7 +98,7 @@ from .antinuke.antiwebhook import AntiWebhookUpdate
 from .antinuke.antiwebhookcr import AntiWebhookCreate
 from .antinuke.antiwebhookdl import AntiWebhookDelete
 
-#Extra Optional Events 
+#Extra Optional Events
 
 #from .antinuke.antiemocr import AntiEmojiCreate
 #from .antinuke.antiemodl import AntiEmojiDelete
@@ -136,7 +137,7 @@ async def setup(bot: Olympus):
         Help, General, Moderation, Automod, Welcomer, Fun, Games, Extra,
         Voice, Owner, Customrole, afk, Embed, Media, Ignore,
         Invcrole, Steal, Ship, Timer,
-        Blacklist, Block, Nightmode, AiStuffCog, Badges, Antinuke, Whitelist, 
+        Blacklist, Block, Nightmode, AiStuffCog, Badges, Antinuke, Whitelist,
         Unwhitelist, Extraowner, Map, Blackjack, Slots,
         AutoBlacklist, Guild, Errors, Autorole2, Autorole, greet, AutoResponder,
         Mention, AutoRole, React, AntiMemberUpdate, AntiBan, AntiBotAdd,
@@ -184,6 +185,7 @@ async def setup(bot: Olympus):
   await bot.add_cog(NoPrefix(bot))
   await bot.add_cog(FilterCog(bot))
   await bot.add_cog(Global(bot))
+  await bot.add_cog(Roles(bot))
   await bot.add_cog(Map(bot))
   #await bot.add_cog(Activity(bot))
 
@@ -192,22 +194,22 @@ async def setup(bot: Olympus):
   await bot.add_cog(_antinuke(bot))
   await bot.add_cog(_extra(bot))
   await bot.add_cog(_general(bot))
-  await bot.add_cog(_automod(bot))  
+  await bot.add_cog(_automod(bot))
   await bot.add_cog(_moderation(bot))
   await bot.add_cog(_music(bot))
   await bot.add_cog(_fun(bot))
   await bot.add_cog(_games(bot))
   await bot.add_cog(_ignore(bot))
   await bot.add_cog(_server(bot))
-  await bot.add_cog(_voice(bot))   
+  await bot.add_cog(_voice(bot))
   await bot.add_cog(_welcome(bot))
   await bot.add_cog(_giveaway(bot))
-  
 
 
 
 
-  
+
+
   await bot.add_cog(AutoBlacklist(bot))
   await bot.add_cog(Guild(bot))
   await bot.add_cog(Errors(bot))
@@ -242,7 +244,7 @@ async def setup(bot: Olympus):
   await bot.add_cog(AntiWebhookDelete(bot))
 
 
-#Extra Optional Events 
+#Extra Optional Events
 
   #await bot.add_cog(AntiEmojiCreate(bot))
   #await bot.add_cog(AntiEmojiDelete(bot))

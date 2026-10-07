@@ -435,7 +435,7 @@ class General(commands.Cog):
   async def invite(self, ctx: commands.Context):
     embed = discord.Embed(title="admin Invite & Support!",
       description=
-      "> <:star:1555848046682579084> **[admin - Invite Bot]**\n> <:star:1555848046682579084> **[admin - Support]**",
+      "> ⭐ **[admin - Invite Bot]**\n> ⭐ **[admin - Support]**",
       color=0x000000)
 
     embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/1267667804048588992.png")

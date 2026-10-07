@@ -98,7 +98,7 @@ class Fun(commands.Cog):
   @ignore_check()
   @commands.cooldown(1, 3, commands.BucketType.user)
   async def mydog(self, ctx, user: discord.User):
-      processing= await ctx.reply("<:utility:1555848095127048282> Processing Image...")
+      processing= await ctx.reply("🔄 Processing Image...")
       base_image_path = "data/pictures/mydog.jpg"
       base_image = Image.open(base_image_path).convert("RGBA")
 

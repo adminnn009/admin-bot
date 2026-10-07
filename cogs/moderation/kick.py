@@ -34,7 +34,7 @@ class Kick(commands.Cog):
         name="kick",
         help="Kicks a member from the server.",
         usage="kick <member> [reason]",
-        aliases=["kickmember"])
+        aliases=["kickmember", "k"])
     @blacklist_check()
     @ignore_check()
     @top_check()

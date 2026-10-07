@@ -199,13 +199,13 @@ class MusicControlView(View):
         if self.player.paused:
             await self.player.pause(False)
 
-            await self.player.channel.edit(status=f"<:play:1554901232093503581> Playing: {self.player.current.title}")
+            await self.player.channel.edit(status=f"▶️ Playing: {self.player.current.title}")
             button.emoji="▶️"
             await interaction.response.edit_message(view=self)
 
         elif self.player.playing:
             await self.player.pause(True)
-            await self.player.channel.edit(status=f"<:play:1554901232093503581> Paused: {self.player.current.title}")
+            await self.player.channel.edit(status=f"▶️ Paused: {self.player.current.title}")
             button.emoji="▶️"
             await interaction.response.edit_message(view=self)
 
@@ -385,7 +385,7 @@ class Music(commands.Cog):
             #embed.set_author(name="Now Playing", icon_url="https://cdn.discordapp.com/emojis/1275556609958875218.gif")
             embed.add_field(name="Author", value=f"`{track.author}`")
             embed.add_field(name="Duration", value=f"`{duration}`")
-            embed.add_field(name="Source", value=f"[✦ Listen on Spotify]({track.uri})" if "spotify" in track.source else f"[<:play:1554901232093503581> Listen on JioSaavn]({track.uri})" if "jiosaavn" in track.source else f"[<:play:1554901232093503581> Listen on SoundCloud]({track.uri})" if "soundcloud" in track.source else f"[<:play:1554901232093503581> Listen on YouTube]({track.uri})")
+            embed.add_field(name="Source", value=f"[✦ Listen on Spotify]({track.uri})" if "spotify" in track.source else f"[▶️ Listen on JioSaavn]({track.uri})" if "jiosaavn" in track.source else f"[▶️ Listen on SoundCloud]({track.uri})" if "soundcloud" in track.source else f"[▶️ Listen on YouTube]({track.uri})")
             embed.set_image(url="attachment://player.png")
             embed.set_footer(text="Requested by " + (ctx.author.display_name if not autoplay else f"{ctx.author.display_name} (Autoplay Mode)"), icon_url=ctx.author.avatar.url if ctx.author.avatar else ctx.author.default_avatar.url)
 
@@ -433,7 +433,7 @@ class Music(commands.Cog):
 
     async def play_source(self, ctx, query):
         if not ctx.author.voice:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> You need to be in a voice channel to use this command.", color=0x000000))
+            await ctx.send(embed=discord.Embed(description="⚠️ You need to be in a voice channel to use this command.", color=0x000000))
             return
 
         vc = ctx.voice_client or await ctx.author.voice.channel.connect(cls=wavelink.Player)
@@ -462,7 +462,7 @@ class Music(commands.Cog):
 
         if isinstance(tracks, wavelink.Playlist):
             await vc.queue.put_wait(tracks.tracks)
-            await ctx.send(embed=discord.Embed(description=f"<:star:1555848046682579084> Added playlist [{tracks.name}] with **{len(tracks.tracks)} songs** to the queue.", color=0x000000))
+            await ctx.send(embed=discord.Embed(description=f"⭐ Added playlist [{tracks.name}] with **{len(tracks.tracks)} songs** to the queue.", color=0x000000))
             if not vc.playing:
                 track = await vc.queue.get_wait()
                 await vc.play(track)
@@ -470,7 +470,7 @@ class Music(commands.Cog):
         else:
             track = tracks[0]
             await vc.queue.put_wait(track)
-            await ctx.send(embed=discord.Embed(description=f"<:star:1555848046682579084> Added [{track.title}] to the queue.", color=0x000000))
+            await ctx.send(embed=discord.Embed(description=f"⭐ Added [{track.title}] to the queue.", color=0x000000))
             if not vc.playing:
                 await vc.play(await vc.queue.get_wait())
                 await self.display_player_embed(vc, track, ctx)
@@ -499,7 +499,7 @@ class Music(commands.Cog):
 
                 track = search_results[0]
                 await vc.queue.put_wait(track)
-                await ctx.send(embed=discord.Embed(description=f"<:star:1555848046682579084> Added [{track.title}] to the queue.", color=0x000000))
+                await ctx.send(embed=discord.Embed(description=f"⭐ Added [{track.title}] to the queue.", color=0x000000))
                 if not vc.playing:
                     await vc.play(track)
                     await self.display_player_embed(vc, track, ctx)
@@ -530,7 +530,7 @@ class Music(commands.Cog):
                         c += 1
                         await ctx.message.add_reaction("✅")
 
-                await ctx.send(embed=discord.Embed(description=f"<:star:1555848046682579084> Added **{c}** of **{playlist_length}** tracks from **playlist** **[{playlist_info['name']}]** to the queue.", color=0x000000))
+                await ctx.send(embed=discord.Embed(description=f"⭐ Added **{c}** of **{playlist_length}** tracks from **playlist** **[{playlist_info['name']}]** to the queue.", color=0x000000))
                 await lmao.delete()
 
                 if not vc.playing:
@@ -558,7 +558,7 @@ class Music(commands.Cog):
                     if track_results:
                         await vc.queue.put_wait(track_results[0])
 
-                await ctx.send(embed=discord.Embed(description=f"<:star:1555848046682579084> Added all tracks from album **[{album_info['name']}]** to the queue.", color=0x000000))
+                await ctx.send(embed=discord.Embed(description=f"⭐ Added all tracks from album **[{album_info['name']}]** to the queue.", color=0x000000))
                 if not vc.playing:
                     next_track = await vc.queue.get_wait()
                     await vc.play(next_track)
@@ -575,7 +575,7 @@ class Music(commands.Cog):
         bar = '█' * filled_length + '░' * (length - filled_length)
         return bar
 
-    @commands.hybrid_command(name="play", aliases=['p'], usage="play <query>", help="Plays a song or playlist.")
+    @commands.hybrid_command(name="play", aliases=["pl"], usage="play <query>", help="Plays a song or playlist.")
     @blacklist_check()
     @ignore_check()
     @commands.cooldown(1, 3, commands.BucketType.user)
@@ -590,7 +590,7 @@ class Music(commands.Cog):
     @commands.cooldown(1, 3, commands.BucketType.user)
     async def search2(self, ctx: commands.Context, *, query: str):
         if not ctx.author.voice:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> You need to be in a voice channel to use this command.", color=0x000000))
+            await ctx.send(embed=discord.Embed(description="⚠️ You need to be in a voice channel to use this command.", color=0x000000))
             return
 
         embed = discord.Embed(
@@ -661,18 +661,18 @@ class Music(commands.Cog):
     async def autoplay(self, ctx: commands.Context):
         vc = ctx.voice_client
         if not vc or not vc.playing:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> No song is currently playing.", color=0x000000))
+            await ctx.send(embed=discord.Embed(description="⚠️ No song is currently playing.", color=0x000000))
             return
 
         if not ctx.author.voice or ctx.author.voice.channel.id != vc.channel.id:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> You need to be in the same voice channel as me to use this command.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ You need to be in the same voice channel as me to use this command.", color=0xFF0000))
             return
 
         if vc:
             vc.autoplay = (
                 wavelink.AutoPlayMode.enabled if vc.autoplay != wavelink.AutoPlayMode.enabled else wavelink.AutoPlayMode.disabled
             )
-            await ctx.send(embed=discord.Embed(description=f"<:star:1555848046682579084>  Autoplay {'enabled' if vc.autoplay == wavelink.AutoPlayMode.enabled else 'disabled'} by {ctx.author.mention}.", color=0x000000))
+            await ctx.send(embed=discord.Embed(description=f"⭐  Autoplay {'enabled' if vc.autoplay == wavelink.AutoPlayMode.enabled else 'disabled'} by {ctx.author.mention}.", color=0x000000))
 
     @commands.hybrid_command(name="loop", usage="loop", help="Toggles loop mode.")
     @blacklist_check()
@@ -681,16 +681,16 @@ class Music(commands.Cog):
     async def loop(self, ctx: commands.Context):
         vc = ctx.voice_client
         if not vc or not vc.playing:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> No song is currently playing.", color=0x000000))
+            await ctx.send(embed=discord.Embed(description="⚠️ No song is currently playing.", color=0x000000))
             return
 
         if not ctx.author.voice or ctx.author.voice.channel.id != vc.channel.id:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> You need to be in the same voice channel as me to use this command.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ You need to be in the same voice channel as me to use this command.", color=0xFF0000))
             return
 
         if vc:
             vc.queue.mode = wavelink.QueueMode.loop if vc.queue.mode != wavelink.QueueMode.loop else wavelink.QueueMode.normal
-            await ctx.send(embed=discord.Embed(description=f"<:star:1555848046682579084>  Loop {'enabled' if vc.queue.mode == wavelink.QueueMode.loop else 'disabled'} by {ctx.author.mention}.", color=0x000000))
+            await ctx.send(embed=discord.Embed(description=f"⭐  Loop {'enabled' if vc.queue.mode == wavelink.QueueMode.loop else 'disabled'} by {ctx.author.mention}.", color=0x000000))
         else:
             await ctx.send(embed=discord.Embed(description="I'm not connected to a voice channel.", color=0xFF0000))
 
@@ -702,19 +702,19 @@ class Music(commands.Cog):
     async def pause(self, ctx: commands.Context):
         vc = ctx.voice_client
         if not vc or not vc.playing:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> No song is currently playing.", color=0x000000))
+            await ctx.send(embed=discord.Embed(description="⚠️ No song is currently playing.", color=0x000000))
             return
 
         if not ctx.author.voice or ctx.author.voice.channel.id != vc.channel.id:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> You need to be in the same voice channel as me to use this command.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ You need to be in the same voice channel as me to use this command.", color=0xFF0000))
             return
 
         if vc and vc.playing and not vc.paused:
             await vc.pause(True)
-            await vc.channel.edit(status=f"<:play:1554901232093503581> Paused: {vc.current.title}")
+            await vc.channel.edit(status=f"▶️ Paused: {vc.current.title}")
             await ctx.send(embed=discord.Embed(description=f"Paused by {ctx.author.mention}.", color=0x000000))
         else:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> Nothing is playing or already paused.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ Nothing is playing or already paused.", color=0xFF0000))
 
     @commands.hybrid_command(name="resume", usage="resume", help="Resumes the paused song.")
     @blacklist_check()
@@ -723,21 +723,21 @@ class Music(commands.Cog):
     async def resume(self, ctx: commands.Context):
         vc = ctx.voice_client
         if not vc or not vc.playing:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> No song is currently playing.", color=0x000000))
+            await ctx.send(embed=discord.Embed(description="⚠️ No song is currently playing.", color=0x000000))
             return
 
         if not ctx.author.voice or ctx.author.voice.channel.id != vc.channel.id:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> You need to be in the same voice channel as me to use this command.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ You need to be in the same voice channel as me to use this command.", color=0xFF0000))
             return
 
         if vc and vc.paused:
             await vc.pause(False)
-            await vc.channel.edit(status=f"<:play:1554901232093503581> Playing: {vc.current.title}")
+            await vc.channel.edit(status=f"▶️ Playing: {vc.current.title}")
             await ctx.send(embed=discord.Embed(description=f"Resumed by {ctx.author.mention}.", color=0x000000))
         else:
             await ctx.send(embed=discord.Embed(description="Player is not paused.", color=0xFF0000))
 
-    @commands.hybrid_command(name="skip", usage="skip", help="Skips the current song.")
+    @commands.hybrid_command(name="skip", usage="skip", help="Skips the current song.", aliases=["sk"])
     @blacklist_check()
     @ignore_check()
     @commands.cooldown(1, 3, commands.BucketType.user)
@@ -748,7 +748,7 @@ class Music(commands.Cog):
             return
 
         if not ctx.author.voice or ctx.author.voice.channel.id != vc.channel.id:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> You need to be in the same voice channel as me to use this command.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ You need to be in the same voice channel as me to use this command.", color=0xFF0000))
             return
 
         if vc.autoplay == wavelink.AutoPlayMode.enabled:
@@ -760,7 +760,7 @@ class Music(commands.Cog):
             await vc.stop()
             await ctx.send(embed=discord.Embed(description=f"Skipped by {ctx.author.mention}.", color=0x000000))
         else:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> No song is playing or in the queue to skip.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ No song is playing or in the queue to skip.", color=0xFF0000))
 
     @commands.hybrid_command(name="shuffle", usage="shuffle", help="Shuffles the queue.")
     @blacklist_check()
@@ -769,11 +769,11 @@ class Music(commands.Cog):
     async def shuffle(self, ctx: commands.Context):
         vc = ctx.voice_client
         if not vc or not vc.playing:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> No song is currently playing.", color=0x000000))
+            await ctx.send(embed=discord.Embed(description="⚠️ No song is currently playing.", color=0x000000))
             return
 
         if not ctx.author.voice or ctx.author.voice.channel.id != vc.channel.id:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> You need to be in the same voice channel as me to use this command.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ You need to be in the same voice channel as me to use this command.", color=0xFF0000))
             return
 
         if vc and vc.queue:
@@ -782,7 +782,7 @@ class Music(commands.Cog):
         else:
             await ctx.send(embed=discord.Embed(description="Queue is empty.", color=0xFF0000))
 
-    @commands.hybrid_command(name="stop", usage="stop", help="Stops the current song and clears the queue.")
+    @commands.hybrid_command(name="stop", usage="stop", help="Stops the current song and clears the queue.", aliases=["st"])
     @blacklist_check()
     @ignore_check()
     @commands.cooldown(1, 3, commands.BucketType.user)
@@ -790,11 +790,11 @@ class Music(commands.Cog):
         player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
         vc = ctx.voice_client
         if not vc or not vc.playing:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> No song is currently playing.", color=0x000000))
+            await ctx.send(embed=discord.Embed(description="⚠️ No song is currently playing.", color=0x000000))
             return
 
         if not ctx.author.voice or ctx.author.voice.channel.id != vc.channel.id:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> You need to be in the same voice channel as me to use this command.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ You need to be in the same voice channel as me to use this command.", color=0xFF0000))
             return
 
         if vc and player:
@@ -813,11 +813,11 @@ class Music(commands.Cog):
         vc = ctx.voice_client
 
         if not vc:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> I'm not connected to a voice channel.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ I'm not connected to a voice channel.", color=0xFF0000))
             return
 
         if not ctx.author.voice or ctx.author.voice.channel.id != vc.channel.id:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> You need to be in the same voice channel as me to use this command.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ You need to be in the same voice channel as me to use this command.", color=0xFF0000))
             return
 
         if vc:
@@ -825,11 +825,11 @@ class Music(commands.Cog):
                 await vc.set_volume(level)
                 await ctx.send(embed=discord.Embed(description=f"▸ Volume set to {level}% by {ctx.author.mention}.", color=0x000000))
             else:
-                await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> Volume must be between 1 and 150.", color=0xFF0000))
+                await ctx.send(embed=discord.Embed(description="⚠️ Volume must be between 1 and 150.", color=0xFF0000))
         else:
             await ctx.send(embed=discord.Embed(description="Bot is not connected to a voice channel.", color=0xFF0000))
 
-    @commands.hybrid_command(name="queue", usage="queue", help="Shows the current queue.")
+    @commands.hybrid_command(name="queue", usage="queue", help="Shows the current queue.", aliases=["q"])
     @blacklist_check()
     @ignore_check()
     @commands.cooldown(1, 3, commands.BucketType.user)
@@ -837,11 +837,11 @@ class Music(commands.Cog):
         vc = ctx.voice_client
 
         if not vc or not vc.queue or vc.queue.is_empty:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> The queue is currently empty.", color=0x000000))
+            await ctx.send(embed=discord.Embed(description="⚠️ The queue is currently empty.", color=0x000000))
             return
 
         if not ctx.author.voice or ctx.author.voice.channel.id != vc.channel.id:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> You need to be in the same voice channel as me to use this command.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ You need to be in the same voice channel as me to use this command.", color=0xFF0000))
             return
 
 
@@ -863,11 +863,11 @@ class Music(commands.Cog):
         vc = ctx.voice_client
 
         if not vc or not vc.queue or vc.queue.is_empty:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> No Queue to clear.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ No Queue to clear.", color=0xFF0000))
             return
 
         if not ctx.author.voice or ctx.author.voice.channel.id != vc.channel.id:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> You need to be in the same voice channel as me to use this command.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ You need to be in the same voice channel as me to use this command.", color=0xFF0000))
             return
 
         if vc and vc.queue:
@@ -884,11 +884,11 @@ class Music(commands.Cog):
         vc = ctx.voice_client
 
         if not vc or not vc.playing:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> I'm not connected to any voice channel.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ I'm not connected to any voice channel.", color=0xFF0000))
             return
 
         if not ctx.author.voice or ctx.author.voice.channel.id != vc.channel.id:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> You need to be in the same voice channel as me to use this command.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ You need to be in the same voice channel as me to use this command.", color=0xFF0000))
             return
 
         if vc and vc.playing:
@@ -915,11 +915,11 @@ class Music(commands.Cog):
     async def disconnect(self, ctx: commands.Context):
         vc = ctx.voice_client
         if not vc:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> I'm not connected to any voice channel.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ I'm not connected to any voice channel.", color=0xFF0000))
             return
 
         if not ctx.author.voice or ctx.author.voice.channel.id != vc.channel.id:
-            await ctx.send(embed=discord.Embed(description="<:warn:1555848119160279080> You need to be in the same voice channel as me to use this command.", color=0xFF0000))
+            await ctx.send(embed=discord.Embed(description="⚠️ You need to be in the same voice channel as me to use this command.", color=0xFF0000))
             return
 
         if vc:
@@ -960,7 +960,7 @@ class Music(commands.Cog):
 
         voice_channel = player.channel
         if voice_channel:
-            await voice_channel.edit(status=f"<:play:1554901232093503581> Playing: {track.title}")  # type: ignore
+            await voice_channel.edit(status=f"▶️ Playing: {track.title}")  # type: ignore
 
         if guild_id not in track_histories:
             track_histories[guild_id] = []

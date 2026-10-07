@@ -273,7 +273,7 @@ class Emergency(commands.Cog):
     @commands.guild_only()
     async def role_add(self, ctx, role: discord.Role):
         if not await self.is_guild_owner(ctx):
-            embed = discord.Embed(title="<:ignore:1554901205850001449> Access Denied", description="Only the server owner can add role for emergency situation.", color=0x000000)
+            embed = discord.Embed(title="❌ Access Denied", description="Only the server owner can add role for emergency situation.", color=0x000000)
             return await ctx.reply(embed=embed)
 
 
@@ -363,11 +363,11 @@ class Emergency(commands.Cog):
 
         if not await self.is_guild_owner_or_authorised(ctx) and str(ctx.author.id) not in Olympus:
             return await ctx.reply(embed=discord.Embed(
-                title="<:ignore:1554901205850001449> Access Denied", 
+                title="❌ Access Denied", 
                 description="You are not authorised to execute the emergency situation.", 
                 color=0x000000))
 
-        processing_message = await ctx.send(embed=discord.Embed(title="<:utility:1555848095127048282> Processing Emergency Situation, wait for a while...", color=0x000000))
+        processing_message = await ctx.send(embed=discord.Embed(title="🔄 Processing Emergency Situation, wait for a while...", color=0x000000))
 
         antinuke_enabled = False
         async with aiosqlite.connect('db/anti.db') as anti:
@@ -460,23 +460,23 @@ class Emergency(commands.Cog):
                 await most_mem.edit(position=target_position, reason="Emergency Situation: Role moved for safety")
                 await ctx.reply(embed=discord.Embed(
                     title="Emergency Situation",
-                    description=f"**<:star:1555848046682579084> Roles Modified (Denied Dangerous Permissions)**:\n{success_message}\n\n**⚠️ Role Moved**: {most_mem.mention} moved to a position below the bot's highest role.\n**Move back to its previous position soon after the server is not in risk.**\n\n**<:ignore:1554901205850001449> Errors**:\n{error_message}",
+                    description=f"**⭐ Roles Modified (Denied Dangerous Permissions)**:\n{success_message}\n\n**⚠️ Role Moved**: {most_mem.mention} moved to a position below the bot's highest role.\n**Move back to its previous position soon after the server is not in risk.**\n\n**❌ Errors**:\n{error_message}",
                     color=0x000000))
             except discord.Forbidden:
                 await ctx.reply(embed=discord.Embed(
                     title="Emergency Situation",
-                    description=f"**<:star:1555848046682579084> Roles Modified (Denied Dangerous Permissions)**:\n{success_message}\n\n**ℹ️ Role Couldn't Moved**: Failed to move the role {most_mem.mention} below the bot's highest role due to permissions error.\n**Move back to its previous position soon after the server is not in risk.**\n\n**<:ignore:1554901205850001449> Errors**:\n{error_message}",
+                    description=f"**⭐ Roles Modified (Denied Dangerous Permissions)**:\n{success_message}\n\n**ℹ️ Role Couldn't Moved**: Failed to move the role {most_mem.mention} below the bot's highest role due to permissions error.\n**Move back to its previous position soon after the server is not in risk.**\n\n**❌ Errors**:\n{error_message}",
                     color=0x000000))
 
             except Exception as e:
                 await ctx.reply(embed=discord.Embed(
                     title="Emergency Situation",
-                    description=f"**<:star:1555848046682579084> Roles Modified (Denied Dangerous Permissions)**:\n{success_message}\n\n**ℹ️ Role Couldn't Moved**: An unexpected error occurred while moving the role: {str(e)}.\n**Move back to its previous position soon after the server is not in risk.**\n\n**<:ignore:1554901205850001449> Errors**:\n{error_message}",
+                    description=f"**⭐ Roles Modified (Denied Dangerous Permissions)**:\n{success_message}\n\n**ℹ️ Role Couldn't Moved**: An unexpected error occurred while moving the role: {str(e)}.\n**Move back to its previous position soon after the server is not in risk.**\n\n**❌ Errors**:\n{error_message}",
                     color=0x000000)) 
         else:
             await ctx.reply(embed=discord.Embed(
                 title="Emergency Situation",
-                description=f"**<:star:1555848046682579084> Roles Modified (Denied Dangerous Permissions)**:\n{success_message}\n\n**<:ignore:1554901205850001449> Errors**:\n{error_message}",
+                description=f"**⭐ Roles Modified (Denied Dangerous Permissions)**:\n{success_message}\n\n**❌ Errors**:\n{error_message}",
                 color=0x000000))
 
         if antinuke_enabled:
@@ -498,7 +498,7 @@ class Emergency(commands.Cog):
         Olympus = ['213347081799073793', '677952614390038559']
         if ctx.author.id != ctx.guild.owner_id and str(ctx.author.id) not in Olympus:
             return await ctx.reply(embed=discord.Embed(
-                title="<:ignore:1554901205850001449> Access Denied", 
+                title="❌ Access Denied", 
                 description="Only the server owner can execute the emergency restore command.", 
                 color=0x000000))
 
@@ -574,5 +574,5 @@ class Emergency(commands.Cog):
 
         await ctx.reply(embed=discord.Embed(
             title="Emergency Restore",
-            description=f"**<:star:1555848046682579084> Permissions Restored**:\n{success_message}\n\n**<:ignore:1554901205850001449> Errors**:\n{error_message}\n\n✦ Database of previously disabled permissions has been cleared.",
+            description=f"**⭐ Permissions Restored**:\n{success_message}\n\n**❌ Errors**:\n{error_message}\n\n✦ Database of previously disabled permissions has been cleared.",
             color=0x000000))

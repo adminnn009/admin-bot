@@ -75,7 +75,7 @@ class Message(commands.Cog):
     self.color = 0x000000
 
 
-  @commands.group(invoke_without_command=True, aliases=["purge"], help="Clears the messages")
+  @commands.group(invoke_without_command=True, aliases=["purge", "p"], help="Clears the messages")
   @blacklist_check()
   @ignore_check()
   @commands.cooldown(1, 3, commands.BucketType.user)

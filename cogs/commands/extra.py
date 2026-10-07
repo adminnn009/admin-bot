@@ -1031,7 +1031,7 @@ class Extra(commands.Cog):
     embed.add_field(name="Server", value=ctx.guild.name, inline=False)
     embed.add_field(name="Channel", value=ctx.channel.name, inline=False)
     await channel.send(embed=embed)
-    confirm_embed = discord.Embed(title="<:star:1555848046682579084> Bug Reported",
+    confirm_embed = discord.Embed(title="⭐ Bug Reported",
       description="Thank you for reporting the bug. We will look into it.",
       color=0x000000)
     await ctx.reply(embed=confirm_embed)

@@ -75,7 +75,7 @@ class ReasonModal(ui.Modal):
     async def on_submit(self, interaction: discord.Interaction):
         reason = self.reason_input.value or "No reason provided"
         try:
-            await self.user.send(f"<:star:1555848046682579084> You have been Unbanned from **{self.author.guild.name}** by **{self.author}**. Reason: {reason or 'No reason provided'}")
+            await self.user.send(f"⭐ You have been Unbanned from **{self.author.guild.name}** by **{self.author}**. Reason: {reason or 'No reason provided'}")
             dm_status = "Yes"
         except discord.Forbidden:
             dm_status = "No"
@@ -124,7 +124,7 @@ class Ban(commands.Cog):
         name="ban",
         help="Bans a user from the Server",
         usage="ban <member>",
-        aliases=["fuckban", "hackban"])
+        aliases=["fuckban", "hackban", "b"])
     @blacklist_check()
     @ignore_check()
     @top_check()

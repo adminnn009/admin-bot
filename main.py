@@ -93,24 +93,24 @@ async def on_command_completion(context: commands.Context) -> None:
         )
         embed.set_thumbnail(url=avatar_url)
         embed.add_field(
-            name="<:star:1555848046682579084> Command Name :",
+            name="⭐ Command Name :",
             value=f"{executed_command}",
             inline=False,
         )
         embed.add_field(
-            name="<:star:1555848046682579084> Command Executed By :",
+            name="⭐ Command Executed By :",
             value=f"{context.author} | ID: [{context.author.id}](https://discord.com/users/{context.author.id})",
             inline=False,
         )
 
         if context.guild is not None:
             embed.add_field(
-                name="<:star:1555848046682579084> Command Executed In :",
+                name="⭐ Command Executed In :",
                 value=f"{context.guild.name} | ID: [{context.guild.id}](https://discord.com/guilds/{context.guild.id})",
                 inline=False,
             )
             embed.add_field(
-                name="<:star:1555848046682579084> Command Executed In Channel :",
+                name="⭐ Command Executed In Channel :",
                 value=f"{context.channel.name} | ID: [{context.channel.id}](https://discord.com/channels/{context.guild.id}/{context.channel.id})",
                 inline=False,
             )

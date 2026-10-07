@@ -58,7 +58,7 @@ class Lock(commands.Cog):
         name="lock",
         help="Locks a channel to prevent sending messages.",
         usage="lock <channel>",
-        aliases=["lockchannel"])
+        aliases=["lockchannel", "lc"])
     @commands.has_permissions(manage_roles=True)
     @commands.bot_has_permissions(manage_roles=True)
     async def lock_command(self, ctx, channel: discord.TextChannel = None):

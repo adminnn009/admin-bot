@@ -874,7 +874,7 @@ class Badges(commands.Cog):
             user_badges = []
 
             badge_mapping = {
-              "staff": "<:moderation:1554901218890092624> Discord Employee",
+              "staff": "🔨 Discord Employee",
               "partner": "▸ Partnered Server Owner",
               "discord_certified_moderator": "▸ Moderator Programs Alumni",
               "hypesquad_balance": "▸ House Balance Member",
@@ -908,7 +908,7 @@ class Badges(commands.Cog):
                 for guild in self.bot.guilds:
                     if member in guild.members:
                         if guild.premium_subscription_count > 0 and member in guild.premium_subscribers:
-                            user_badges.append("<:star:1555848046682579084> Server Booster Badge")
+                            user_badges.append("⭐ Server Booster Badge")
                             
             if user_badges:
               embed.add_field(name="__**User Badges**__", value="\n".join(user_badges), inline=False)
@@ -941,7 +941,7 @@ class Badges(commands.Cog):
             user_badges = []
 
             badge_mapping = {
-              "staff": "<:moderation:1554901218890092624> Discord Employee",
+              "staff": "🔨 Discord Employee",
               "partner": "▸ Partnered Server Owner",
               "discord_certified_moderator": "▸ Moderator Programs Alumni",
               "hypesquad_balance": "▸ House Balance Member",
@@ -974,7 +974,7 @@ class Badges(commands.Cog):
                 for guild in self.bot.guilds:
                     if member in guild.members:
                         if guild.premium_subscription_count > 0 and member in guild.premium_subscribers:
-                            user_badges.append("<:star:1555848046682579084> Server Booster Badge")
+                            user_badges.append("⭐ Server Booster Badge")
 
             if user_badges:
               embed.add_field(name="__**User Badges**__", value="\n".join(user_badges), inline=False)

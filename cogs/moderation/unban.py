@@ -143,7 +143,7 @@ class Unban(commands.Cog):
             return
 
         try:
-            await user.send(f"<:star:1555848046682579084> You have been unbanned from **{ctx.guild.name}** by **{ctx.author}**. Reason: {reason or 'No reason provided'}")
+            await user.send(f"⭐ You have been unbanned from **{ctx.guild.name}** by **{ctx.author}**. Reason: {reason or 'No reason provided'}")
             dm_status = "Yes"
         except discord.Forbidden:
             dm_status = "No"
